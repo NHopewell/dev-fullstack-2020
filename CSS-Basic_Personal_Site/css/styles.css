@@ -41,12 +41,18 @@ p{
     left: 300px;
     bottom: 0px;
 }
+.btn{
+    font-family: 'Merriweather', serif;
+}
 .footer{
     position: relative;
 }
 .footer-cloud{
     position: absolute;
     right: 300px;
+}
+.footer-link{
+    font-family: 'Merriweather', serif;
 }
 .kite{
     position: absolute;
