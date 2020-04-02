@@ -1,7 +1,10 @@
 /*-----Tag-Selectors-----*/
 
+a{
+    color: #11999E;
+}
 body{
-    background-color: #cbf1f5;
+    background-color: #E4F9F5;
     margin: 0;
     text-align: center;
 }
@@ -11,29 +14,33 @@ h1{
     font-family: 'Sacramento', cursive;
     /* font-size: 562.5%  100% = 16px, if we want 90px then 90/16 = 5.625 * 100 */
     font-size: 5.625em; /* 1em = 16px = 100%, so for 90px, 90/16 = 5.625*/
+    color: #66BFBF;
+    line-height: 2;
 }
 h2{
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5em;
+    color: #66BFBF;
+    line-height: 2;
 }
 h3{
     font-family: 'Montserrat', sans-serif;
-
+    color: #11999E;
 }
 
 hr{
     background-color: none;
     border-style: none;
-    border-top: 8px dotted lightgray;
+    border-top: 7px dotted lightgray;
     height: 5px;
     width: 5%;
     margin-top: 70px;
     margin-bottom: 70px;
 }
 p{
-
     margin: 10px auto;
     font-family: 'Merriweather', serif;
+    font-weight: normal;
 }
 
 /*-----Class-Selectors-----*/
