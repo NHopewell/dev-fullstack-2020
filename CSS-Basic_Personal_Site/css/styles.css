@@ -4,7 +4,7 @@ a{
     color: #11999E;
 }
 body{
-    background-color: #E4F9F5;
+
     margin: 0;
     text-align: center;
 }
@@ -15,13 +15,11 @@ h1{
     /* font-size: 562.5%  100% = 16px, if we want 90px then 90/16 = 5.625 * 100 */
     font-size: 5.625em; /* 1em = 16px = 100%, so for 90px, 90/16 = 5.625*/
     color: #66BFBF;
-    line-height: 2;
 }
 h2{
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5em;
     color: #66BFBF;
-    line-height: 2;
 }
 h3{
     font-family: 'Montserrat', sans-serif;
@@ -29,6 +27,7 @@ h3{
 }
 
 hr{
+    position: relative;
     background-color: none;
     border-style: none;
     border-top: 7px dotted lightgray;
@@ -44,17 +43,46 @@ p{
 }
 
 /*-----Class-Selectors-----*/
-
 .bottom-cloud{
     position: absolute;
-    left: 300px;
-    bottom: 0px;
+    left: 200px;
+    bottom: 270px;
+    width: 12%;
 }
-.btn{
+.email{
+    height: 50px;
+}
+.email-link{
+    display: inline;
     font-family: 'Merriweather', serif;
+    color: #11999E;
+    font-size: 1.5em;
+}
+.email-button {
+    border-radius: 4px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    background-color: #66BFBF;
+    border: 1px solid #11999E;
+    font-family: 'Montserrat', sans-serif;
+    color: #40514e;
+    font-size: 1em;
+}
+
+.copywrite{
+    padding-top: 30px;
+    color: #11999E;
+    font-size: 0.8em;
+}
+.contact-pic{
+    width: 14%;
 }
 .footer{
+    background-color: #E4F9F5;
     position: relative;
+    margin-top: 50px;
+    padding: 50px 0px 40px 0px;
 }
 .footer-cloud{
     position: absolute;
@@ -62,6 +90,9 @@ p{
 }
 .footer-link{
     font-family: 'Merriweather', serif;
+    margin: 50px;
+    text-decoration: none;
+    color: #66BFBF;
 }
 .kite{
     position: absolute;
@@ -72,24 +103,60 @@ p{
     position: relative;
     bottom: 0px;
 }
+.middle-container{
+    position: relative;
+}
+.padded-hr{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .profile-pic{
-    margin-bottom: 100px;
+    margin-top: 50px;
+    width: 20%;
+    bottom: 0;
+    border-bottom-width: 0px;
+    box-sizing: border-box;
+}
+.skill-row{
+    width: 50%;
+    margin: 100px auto 100px auto;
+    line-height: 2;
+}
+.skills-desc{
+    width: 75%;
+}
+.skills-pic{
+    width: 25%;
+    float: right;
+    margin-left: 30px;
+}
+.tools-pic{
+    width: 25%;
+    float: left;
+    margin-right: 30px;
 }
 .title-container {
+    background-color: #E4F9F5;
     padding-top: 100px;
     position: relative;
-    margin-bottom: 100px;;
+    margin: 0;
 
 }
 .top-cloud {
     position: absolute;
-    right: 300px;
-    top: 50px;
+    right: 250px;
+    top: 40px;
 }
 .italic{
     text-decoration: underline;
 }
 
+/*-----ID-Selectors-----*/
 #firstSkillRow {
     margin-bottom: 50px;
+    text-align: left;
+}
+#secondSkillRow{
+    margin-bottom: 50px;
+    text-align: right;
 }
