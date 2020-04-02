@@ -9,10 +9,12 @@ h1{
     width: 30%;
     margin: 0 auto;
     font-family: 'Sacramento', cursive;
-    font-size: 90px; 
+    /* font-size: 562.5%  100% = 16px, if we want 90px then 90/16 = 5.625 * 100 */
+    font-size: 5.625em; /* 1em = 16px = 100%, so for 90px, 90/16 = 5.625*/
 }
 h2{
     font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
 }
 h3{
     font-family: 'Montserrat', sans-serif;
