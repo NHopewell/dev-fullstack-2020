@@ -37,7 +37,6 @@ h1{
     font-size: 1.2rem;
     font-family: "Montserrat";
     font-weight: 200;
-
 }
 
 /* Download Buttons */
@@ -127,6 +126,42 @@ h1{
 .pricing-col {
     padding: 3% 2%;
 }
+
+
+/* Footer */
+#cta {
+    background-color: #ff4c68;
+    padding: 6% 12% 4%;
+    text-align: center;
+}
+
+.cta-h3{
+    color: #fff;
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1.5;
+
+}
+
+#footer{
+    background-color: #fff;
+    padding: 4% 0;
+    text-align: center;
+}
+ 
+.footer-p {
+    color: lightgray;
+}
+
+.social-media-buttons{
+    margin: 2%;
+}
+
+.s-media {
+    padding:0 1% 0 1%;
+}
+    
+
 
 /* tablet and mobile size responses  */
 @media (max-width: 1028px){
