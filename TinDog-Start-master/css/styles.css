@@ -128,24 +128,25 @@ h1{
 }
 
 
-/* Footer */
+/* Call to action */
 #cta {
     background-color: #ff4c68;
-    padding: 6% 12% 4%;
+    color: #fff;
+    padding: 7% 15%;
     text-align: center;
 }
 
 .cta-h3{
-    color: #fff;
     font-weight: 800;
     font-size: 3.5rem;
     line-height: 1.5;
 
 }
 
+/* Footer */
 #footer{
     background-color: #fff;
-    padding: 4% 0;
+    padding: 5% 15%;
     text-align: center;
 }
  
@@ -153,12 +154,8 @@ h1{
     color: lightgray;
 }
 
-.social-media-buttons{
-    margin: 2%;
-}
-
 .s-media {
-    padding:0 1% 0 1%;
+    padding:2% 1%;
 }
     
 
