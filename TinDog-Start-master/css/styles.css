@@ -4,12 +4,13 @@ body{
 
 #title{
     color: #fff;
+    position: relative;
     background-color: #ff4c68;
 }
 
 .title-container{
     text-shadow: black;
-    padding: 3% 15%;
+    padding: 3% 15% 7%;
 }
 
 h1{
@@ -48,11 +49,15 @@ h1{
 .title-image{
     transform: rotate(25deg);
     width: 60%;
+    position: absolute;
+    right: 30%;
 }
 
 /* Features section */
 #features{
     padding: 7% 15%;
+    background-color: #fff;
+    position: relative;  
 }
 
 .feature-col{
