@@ -127,3 +127,14 @@ h1{
 .pricing-col {
     padding: 3% 2%;
 }
+
+/* tablet and mobile size responses  */
+@media (max-width: 1028px){
+    #title{
+        text-align: center;
+    }
+    .title-image {
+        position: static;
+        transform: rotate(0);
+    }
+}
