@@ -1,72 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nick Hopewell</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="images/zeke_favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="title-container">
-        <img class="top-cloud" src="images/moon.png" alt="cloud_picture">
-        <h1>I'm Nick.</h1>
-        <h3>...and I'm a developer.</h3>
-        <img class="bottom-cloud" src="images/rocket.png" alt="rocket_picture">
-        <div class="profile-container">
-            <img class="profile-pic" src="images/worker.png" alt="Nicks-profile-pic">
-        </div>
-        
-          
-    </div>   
-    <div class="middle-container">
-        <div class="profile">
-          <h2>Hi.</h2>
-          <p>I'm a data scientist and developer.</p>
-          <p>I love to cook and learn about different cultural traditions and foods.</p>
-          <p>I also love  my dog, Zeke (thats him up in your browser tab).</p>
-        </div>
-        <hr style="margin-top: 110px" class="padded-hr">
-        <div class="skills">
-            <h2>My Skills</h2>
-          
-          <div id="firstSkillRow" class="skill-row">
-            <img class="tools-pic" src="images/support.png" alt="">
-            <h3>Tools & Technologies</h3>
-            <p>Python, R, RMarkDown, SQL, PySpark, Git, Bash, AWS, </p>
-            <p>Azure DevOps, C, C#, LaTeX, TidyVerse, SciPy.</p>
-          </div>
-          
-          <div id="secondSkillRow" class="skill-row">
-            <img class="skills-pic" src="images/report.png" alt="">
-            <h3>Technical</h3>
-            <p>Data Science & Data Analytics, Scripting, OOP, </p>
-            <p>Data Mining, Data Vizualization, Statistics, Big Data.</p>
-          </div>
-        </div>
-        <div class="padded-hr">
-            <hr> 
-        </div>
-        <div class="contact-me">
-            <h2 class="in-touch">Get In Touch</h2>
-          <img class="contact-pic" src="images/marketing.png" alt="contact-picture">
-          <h3 class="contact-p">I am open for freelance work in analytics and development.</h3>
-          <p>If you need help on a project and think I have the appropriate skills</p>
-          <p>or would simply like to chat, feel free to send me an email.</p>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nick Hopewell</title>
+  <!-- CSS stylesheets -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <section id="title">
+
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="title-left-container col">
+          <img class="rocket-img" src="images/rocket.png" alt="rocket_picture">
         </div>
-        <button onclick="window.location.href = 'mailto:nicholashopewell@gmail.com';" class="email-button">
-            MESSAGE ME
-        </button>
+        <div class="title-middle-container col-sm-8">
+          <h1 class="im-nick">I'm Nick.</h1>
+          <h3 class="developer">...and I'm a developer.</h3>
+          <img class="person-img" src="images/worker.png" alt="Nicks-profile-pic">
+        </div>
+        <div class="title-right-container col">
+          <img class="moon-img" src="images/moon.png" alt="cloud_picture">
+        </div>
       </div>
 
-      <div class="footer">
-        <a class="footer-link" href="https://www.linkedin.com/in/nick-hopewell-a83223132/" target="blank">LinkedIn</a>
-        <a class="footer-link" href="https://github.com/NHopewell" target="blank">Github</a>
-        <a class="footer-link" href="https://github.com/NHopewell/Nick_Hopewell_Resume/blob/master/Nick_Hopewell_Resume.pdf" target="blank">My Resume</a>
-        <p class="copywrite">© 2020 Nick Hopewell.</p>
     </div>
-    
+
+  </section>
+
+  <section id="middle">
+
+    <div class="middle-container container-fluid">
+
+      <div class="profile container-fluid">
+        <h2 class="large-subtitle-heading">Hi.</h2>
+        <p>I'm a data scientist and developer. <br>
+          I love to cook and learn about different cultural traditions and foods. <br>
+          I also love my dog, Zeke (thats him up in your browser tab).</p>
+      </div>
+
+      <hr class="padded-hr">
+
+      <div class="skills container-fluid">
+
+        <h2 class="My-skills large-subtitle-heading">My Skills</h2>
+
+        <div class="skill-row row">
+          <div class="tools-col-left col">
+            <img class="tools-pic" src="images/support.png" alt="">
+          </div>
+          <div class="tools-col-right col">
+            <h3 class="medium-subtitle-heading">Tools & Technologies</h3>
+            <p class="tools-p">Python, R, RMarkDown, SQL, PySpark, Git, Bash, AWS,
+              Azure DevOps, C, C#, LaTeX, TidyVerse, SciPy.</p>
+          </div>
+        </div>
+
+        <div class="skill-row row">
+          <div class="tech-col-left col">
+            <h3 class="medium-subtitle-heading">Technical</h3>
+            <p class="tech-p">Data Science & Data Analytics, Scripting, OOP,
+              Data Mining, Data Vizualization, Statistics, Big Data.</p>
+          </div>
+
+          <div class="tech-col-right col">
+            <img class="skills-pic" src="images/report.png" alt="">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="padded-hr">
+
+    <section id="contact">
+      <div class="contact-me container-fluid">
+
+        <h2 class="get-in-touch large-subtitle-heading">Get In Touch</h2>
+        <img class="contact-pic" src="images/marketing.png" alt="contact-picture">
+        <div class="container-fluid">
+          <h3 class="medium-subtitle-heading">I am open for freelance work in analytics and development.</h3>
+          <p class="contact-p">If you need help on a project and think I have the appropriate skills or would simply
+            like to chat, feel free to send me an email.</p>
+        </div>
+      </div>
+      <button type="button" onclick="window.location.href = 'mailto:nicholashopewell@gmail.com';"
+        class="contact-button btn btn-lg">
+        MESSAGE ME
+      </button>
+
+      </div>
+
+    </section>
+
+    <section id="footer">
+
+      <nav class="navbar justify-content-center">
+      
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="footer-nav nav-link" href="https://www.linkedin.com/in/nick-hopewell-a83223132/" target="blank">LinkedIn <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="footer-nav nav-link" href="https://github.com/NHopewell" target="blank">GitHub</a>
+            </li>
+            <li class="nav-item">
+              <a class="footer-nav nav-link" href="https://github.com/NHopewell/Nick_Hopewell_Resume/blob/master/Nick_Hopewell_Resume.pdf" target="blank">My Resume</a>
+            </li>
+          </ul>
+        
+      </nav>
+
+      <p class="copywrite">© 2020 Nick Hopewell.</p>
+
+    </section>
+
 </body>
+
 </html>
