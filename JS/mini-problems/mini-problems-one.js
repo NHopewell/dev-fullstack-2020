@@ -147,3 +147,24 @@ for (i=99; i>0; i--) {
 }
 console.log("No more bottles of beer on the wall, no more bottles of beer.");
 console.log("Go to the store and buy some more, 99 bottles of beer on the wall.");
+
+// Fibonachi numbers
+fibonacciGenerator = function(n) {
+    if (n < 2) {
+        console.log("Must provide a length of 2 or greater");
+        return;
+    }
+
+    var fibArray = [0, 1];
+    var counter = 2;
+
+    while (counter <= (n - 1)) {
+        fibArray.push(fibArray[counter - 2] + fibArray[counter -1]);
+        counter++;
+    }
+
+    return fibArray;
+}
+
+x = fibonacciGenerator(10);
+x;
