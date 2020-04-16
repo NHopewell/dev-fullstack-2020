@@ -42,22 +42,25 @@ checkRollResult = function(rollOne, rollTwo) {
 
 }
 
-// roll die 2 times -> get strs
-var rolls = returnDiceRoll(2);
-var rollStrs = returnDiceRollStr(rolls, "dice", ".png")
+// only when the user reloads the page
+if (performance.navigation.type == 1) {
+    // roll die 2 times -> get strs
+    var rolls = returnDiceRoll(2);
+    var rollStrs = returnDiceRollStr(rolls, "dice", ".png")
 
-// get rolls fo p1
-var dieRollPlayer1 = rolls[0]; 
-var dieRollPlayer1Img = rollStrs[0];
-//updates p1 roll img
-document.querySelector(".playerOne-roll").setAttribute("src", "images/"+dieRollPlayer1Img);
+    // get rolls fo p1
+    var dieRollPlayer1 = rolls[0]; 
+    var dieRollPlayer1Img = rollStrs[0];
+    //updates p1 roll img
+    document.querySelector(".playerOne-roll").setAttribute("src", "images/"+dieRollPlayer1Img);
 
-// get rolls for p2
-var dieRollPlayer2 = rolls[1]; 
-var dieRollPlayer2Img = rollStrs[1];
-//updates p2 roll img
-document.querySelector(".playerTwo-roll").setAttribute("src", "images/"+dieRollPlayer2Img);
+    // get rolls for p2
+    var dieRollPlayer2 = rolls[1]; 
+    var dieRollPlayer2Img = rollStrs[1];
+    //updates p2 roll img
+    document.querySelector(".playerTwo-roll").setAttribute("src", "images/"+dieRollPlayer2Img);
 
-// get results message:
-var msg = checkRollResult(rolls[0], rolls[1]);
-document.querySelector("#top .container h1").innerHTML = "<div>"+msg+"</div>";
+    // get results message:
+    var msg = checkRollResult(rolls[0], rolls[1]);
+    document.querySelector("#top .container h1").innerHTML = "<div>"+msg+"</div>";
+} 
