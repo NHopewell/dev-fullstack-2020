@@ -31,11 +31,11 @@ checkRollResult = function(rollOne, rollTwo) {
     var msg = "";
 
     if (rollOne > rollTwo) {
-        msg = "Player 1 Wins!";
+        msg = "🚩 Player 1 Wins! 🚩";
     } else if (rollTwo > rollOne) {
-        msg = "Player 2 Wins!"
+        msg = "🏁 Player 2 Wins! 🏁"
     } else {
-        msg = "It was a draw. No one wins."
+        msg = "🏴‍☠️ It was a draw 🏴‍☠️"
     }
 
     return msg;
@@ -50,16 +50,14 @@ var rollStrs = returnDiceRollStr(rolls, "dice", ".png")
 var dieRollPlayer1 = rolls[0]; 
 var dieRollPlayer1Img = rollStrs[0];
 //updates p1 roll img
-document.querySelector(".playerOne-roll").src = "images/"+dieRollPlayer1Img 
-
+document.querySelector(".playerOne-roll").setAttribute("src", "images/"+dieRollPlayer1Img);
 
 // get rolls for p2
 var dieRollPlayer2 = rolls[1]; 
 var dieRollPlayer2Img = rollStrs[1];
 //updates p2 roll img
-document.querySelector(".playerTwo-roll").src = "images/"+dieRollPlayer2Img 
+document.querySelector(".playerTwo-roll").setAttribute("src", "images/"+dieRollPlayer2Img);
 
 // get results message:
 var msg = checkRollResult(rolls[0], rolls[1]);
-document.querySelector("#middle .fluid-container .player-row").innerHTML = "<div>"+msg+"</div>";
-document.querySelector("#middle .fluid-container .player-row").classList.add("result-message");
+document.querySelector("#top .container h1").innerHTML = "<div>"+msg+"</div>";
