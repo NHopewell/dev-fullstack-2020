@@ -13,7 +13,10 @@ cindy.name;
 function HouseKeeper(name, age, years_experience) {
     this.name = name,
     this.age = age,
-    this.years_experience = years_experience
+    this.years_experience = years_experience,
+    this.clean = function () {
+        alert("cleaning in progress...")
+    }
 }
 
 var bob = new HouseKeeper("bob", 21, 4);

@@ -1,5 +1,5 @@
 // Leap Year Calculator 
-isLeapYear = function(year) {
+function isLeapYear(year) {
     var leap = false;
 
     if (year % 4 === 0) {
@@ -43,7 +43,7 @@ bmiCalculator(60, 2);
 var myArray = [];
 counter = 1;
 
-fizzBuzz = function(arr) {
+function fizzBuzz(arr) {
     if (counter % 3 === 0) {
 
         if (counter % 5 === 0) {
@@ -105,7 +105,7 @@ myArray;
 // who pays lunch?
 var names = "Nick John Bob Mary Luke".split(" ");
 
-whoPays = function(arr) {
+function whoPays(arr) {
     choice = Math.round(Math.random() * (arr.length - 1));
 
     return arr[choice] + " is going to buy lunch today!";
