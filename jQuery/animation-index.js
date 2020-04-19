@@ -31,7 +31,13 @@
     // })
 
 
-// animate (specify some css you want to animate towards)
+// ANIMATE (specify some css you want to animate towards)
+    // $('button').on("click", function() {
+    //     $("h1").animate({ opacity: 0.5}); // can only include css rules that have a numeric value NO STRINGS!!!
+    // })
+
+
+// CHAIN TOGETHER jQuery animations 
 $('button').on("click", function() {
-    $("h1").animate({ opacity: 0.5}); // can only include css rules that have a numeric value NO STRINGS!!!
+    $("h1").slideUp().slideDown().animate({ opacity: 0.5}); // can only include css rules that have a numeric value NO STRINGS!!!
 })
