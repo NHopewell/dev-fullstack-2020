@@ -8,10 +8,9 @@ function nextSequence() {
     return randomNumer;
 }
 
-function colourSwitch (switchOn) {
+function playSound (colour) {
     // a switch to play audio sounds based on input colours
-
-    switch (switchOn) {
+    switch (colour) {
 
         case "blue":
             var blueSound = new Audio("sounds/blue.mp3");
@@ -37,25 +36,37 @@ function colourSwitch (switchOn) {
 
 }
 
+function animatePress(currentColour, nSeconds) {
+    // add a css class to a selected element and remove
+    // it after n sceonds.
+    var elementClicked = $("#"+currentColour)
+    elementClicked.addClass("pressed");
 
+    setTimeout(function() {
+        elementClicked.removeClass("pressed");
+    }, nSeconds);
+}
+
+// to start game, press A, choose random colour, animate + play sounds
 $(document).keypress(function(event) {
-
     if (event.key === 'a') {
         var randomChosenColour = buttonColours[nextSequence()];
         gamePattern.push(randomChosenColour);
     
         $("#"+randomChosenColour).fadeOut(100).fadeIn(100);
-        colourSwitch(randomChosenColour);
+        playSound(randomChosenColour);
     }
 })
 
+//wait for user click, check, play sound, animate
 $(document).click(function(event) {
-
     var userChosenColour = event.target.id;
+    animatePress(userChosenColour, 100);
+    playSound(userChosenColour);
     userClickPattern.push(userChosenColour);
 
-    console.log(userClickPattern)
 })
+
 
 
 
