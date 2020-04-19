@@ -1,71 +1,124 @@
+// Initialize vars
+var buttonColours = ["red", "blue", "green", "yellow"];
+
 var gamePattern = [];
-var userClickPattern = [];
-var buttonColours = "red blue green yellow".split(" ");
+var userClickedPattern = [];
+
+var started = false;
+var level = 0;
+
+// if the game has started, update to show level > this is only run one time at start of game
+$(document).keypress(function() {
+  if (!started) {
+    //update h1
+    $("#level-title").text("Level " + level);
+    // next sequence
+    nextSequence();
+    started = true;
+    }
+});
+
+// check user click
+$(".btn").click(function() {
+    // id will equal a colour (blue, red etc)
+    var userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
+    //animate and play sound
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
+
+    // call checkAnswer()
+    checkAnswer(userClickedPattern.length-1);
+});
+
+
+function checkAnswer(currentLevel) {
+    /*
+        Check users answer, if correct, go to next sequence
+        after 1000 milliseconds. If incorrect, play wrong sound
+        and start game over.
+    */
+
+    // if the last element in both arrays are the same:
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+
+        // correct:
+        if (userClickedPattern.length === gamePattern.length){
+        setTimeout(function () {
+            nextSequence(); // go to next sequence
+        }, 1000);
+        }
+
+    } else {
+        // wrong
+        playSound("wrong");
+        // animate screen by adding game-over class to body and the removing it
+        $("body").addClass("game-over");
+        setTimeout(function () {
+        $("body").removeClass("game-over");
+        }, 200);
+
+        // update h1
+        $("#level-title").text("Game Over, Press Any Key to Restart");
+
+        //Call startOver() if the user gets the sequence wrong.
+        startOver();
+    }
+
+}
 
 function nextSequence() {
-    // generates a random number between 0 and 3
-    randomNumer = Math.round(Math.random() * 3);
-    return randomNumer;
+    /*
+        GO to the next sequence of the game.
+            1. Reset user click pattern array.
+            2. Increase level ++
+            3. Pick random number between 0 and 3, use it to pick colour
+            4. Add colour to game pattern array
+            5. Animate the corresponding button on the screen.
+    */
+
+    // reset user click pattern, increase level
+    userClickedPattern = [];
+    level++;
+    $("#level-title").text("Level " + level);
+
+    // pick a random number, add to gamePattern array
+    var randomNumber = Math.floor(Math.random() * 4);
+    var randomChosenColour = buttonColours[randomNumber];
+    gamePattern.push(randomChosenColour);
+
+    // fade in and out and play sound
+    $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
+    playSound(randomChosenColour);
 }
 
-function playSound (colour) {
-    // a switch to play audio sounds based on input colours
-    switch (colour) {
-
-        case "blue":
-            var blueSound = new Audio("sounds/blue.mp3");
-            blueSound.play();
-            break;
-        case "green":
-            var greenSound = new Audio("sounds/green.mp3");
-            greenSound.play();
-            break;
-        case "red":
-            var redSound = new Audio("sounds/red.mp3");
-            redSound.play();
-            break;
-        case "yellow":
-            var yellowSound = new Audio("sounds/yellow.mp3");
-            yellowSound.play();
-            break;
-        default:
-            var wrongSound = new Audio("sounds/wrong.mp3");
-            wrongSound.play();
-            break;
-    }
-
+function playSound(name) {
+    // play an audo clip
+    var audio = new Audio("sounds/" + name + ".mp3");
+    audio.play();
 }
 
-function animatePress(currentColour, nSeconds) {
-    // add a css class to a selected element and remove
-    // it after n sceonds.
-    var elementClicked = $("#"+currentColour)
-    elementClicked.addClass("pressed");
+function animatePress(currentColor) {
+    // animate a button pressed by the user
 
-    setTimeout(function() {
-        elementClicked.removeClass("pressed");
-    }, nSeconds);
+    $("#" + currentColor).addClass("pressed");
+    setTimeout(function () {
+    $("#" + currentColor).removeClass("pressed");
+    }, 100);
 }
 
-// to start game, press A, choose random colour, animate + play sounds
-$(document).keypress(function(event) {
-    if (event.key === 'a') {
-        var randomChosenColour = buttonColours[nextSequence()];
-        gamePattern.push(randomChosenColour);
-    
-        $("#"+randomChosenColour).fadeOut(100).fadeIn(100);
-        playSound(randomChosenColour);
-    }
-})
 
-//wait for user click, check, play sound, animate
-$(document).click(function(event) {
-    var userChosenColour = event.target.id;
-    animatePress(userChosenColour, 100);
-    playSound(userChosenColour);
-    userClickPattern.push(userChosenColour);
+function startOver() {
+    // start game over by reseting the level, game pattern array
+    // and started = false.
 
-})
+    level = 0;
+    gamePattern = [];
+    started = false;
+}
+
+
+
 
 
 
