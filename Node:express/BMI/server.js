@@ -1,6 +1,8 @@
+// require packages
 const express = require("express");
 const bodyParser = require("body-parser");
 
+// initialize app
 const app = express();
 app.use(bodyParser.urlencoded( { extended: true} ));
 
@@ -28,4 +30,5 @@ app.post("/bmiCalculator", (req, res) => {
     res.send(msg);
 })
 
+// port
 app.listen(2000);
