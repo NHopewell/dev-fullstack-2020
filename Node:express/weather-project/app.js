@@ -5,8 +5,8 @@ const https = require('https');
 const express = require("express");
 const app = express();
 // body-parser
-const bodyParser = require("bodyParser");
-app.user(bodyParser.urlencoded( {enxtended: true} ));
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded( {enxtended: true} ));
 
 // port and absolute path
 const port = 3000;
@@ -49,7 +49,7 @@ app.post("/", (req, res) => {
             res.write(`${descStr}`);
             res.write(`${iconStr}`);
             res.send()
-            
+
         })
     })
 });
