@@ -6,7 +6,7 @@ const express = require("express");
 const app = express();
 // body-parser
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded( {enxtended: true} ));
+app.use(bodyParser.urlencoded( {extended: true} ));
 
 // port and absolute path
 const port = 3000;
@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
     res.sendFile(`${cwd}/index.html`);
 })
 
+// post weather data to user when they input city into form
 app.post("/", (req, res) => {
 
     // use body-parser to get city
