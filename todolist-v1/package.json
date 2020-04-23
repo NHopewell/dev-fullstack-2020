@@ -1,0 +1,15 @@
+{
+  "name": "todolist-v1",
+  "version": "1.0.0",
+  "description": "todolist version 1",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Hopewe;;",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}

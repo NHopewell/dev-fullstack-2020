@@ -14,7 +14,7 @@ const port = 3000;
 const cwd = __dirname;
 
 // mailchimp API key
-// b70f449671879950e090ab6eb6287e01-us8
+const apiKey = '152a12d96de0c93750eca973d5ac7f71-us8'
 
 // audience list id
 // 64468bb378
@@ -22,10 +22,12 @@ const cwd = __dirname;
 app.get("/", (req, res) => res.sendFile(`${cwd}/signup.html`));
 
 app.post("/", (req, res) => {
+
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.emailAddress;
 
+    // what we want to send to mailchimp
     const data = {
         // using the api
         members: [
@@ -39,22 +41,30 @@ app.post("/", (req, res) => {
             }
         ]
     };
-    // send json data as string with mailchimp api
+    // send json data as string with mailchimp api (what we want to send to mailchip)
     const strData = JSON.stringify(data);
 
-    // main mailchimp api url to post to:
-    const mainURL= 'https://usX.api.mailchimp.com/3.0/lists/';
+    // main mailchimp api url to post to  (replace X with number at end of api key):
+    const mainURL= 'https://us8.api.mailchimp.com/3.0/lists/';
     // need to tell mailchimp which list you want to subscribe members into (can have multiple lists)
     const audienceListID = '64468bb378' // the main audience list found -> https://us8.admin.mailchimp.com/lists/settings?id=818221
     const fullAudienceURL = `${mainURL}${audienceListID}`;
 
-    https.request(url. options, (response) => {
+    // options we need to pass
+    const options = {
+        method: 'POST',
+        auth: `Nick:${apiKey}`  // can be any string : api key (https://mailchimp.com/developer/guides/get-started-with-mailchimp-api-3/)
+    } // remember, the region in the api key (us8) has to match region in url
 
+    // make request. must be saved as a constant and used later to make request
+    const request = https.request(url, options, (response) => {
+
+        response.on("data", (data) => {
+            console.log(data);
+        });
     });
-
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
+    // use request to send data to mailchimp server
+    request.write(strData);
 
 });
 
