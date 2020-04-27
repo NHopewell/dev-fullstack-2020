@@ -15,12 +15,16 @@
     <h2>Time to make your to do list</h2>
 
     <form class="" action="/" method="post">
-        <input type="text" name="addTodo" placeholder="Add task to todolist">
+        <input type="text" name="newItem">
+        <button type="submit">Add</button>
     </form>
     <ul>
         <li>Buy food.</li>
         <li>Cook food.</li>
         <li>Eat food.</li>
+    <% for (let i = 0; i < listItems.length; i++) { %>
+        <li><%= listItems[i] %></li>
+    <% } %>
     </ul>
 
     
