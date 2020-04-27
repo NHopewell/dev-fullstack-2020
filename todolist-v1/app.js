@@ -1,7 +1,6 @@
 
 const express = require("express");
 const app = express();
-
 // set apps view enjine to ejs
 app.set('view engine', 'ejs');
 
@@ -13,14 +12,26 @@ const port = 3000;
 
 app.get("/", (req, res) => {
     
-    var today = new Date();
-    var currentDay = today.getDate()
+    let today = new Date();
+    // set options for toLocalDateString
+    const options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    }
+    let currentDay = today.toLocaleDateString("en-us", options) // pass in options here
+    let kindOfDay;
     
     if ([6, 7].includes(today)) {
-        res.write("<h1>Yay, its the weekend</h1>");
+        kindOfDay = 'weekend';
     } else {
-        res.sendFile(`${cwd}/index.html`);
+        kindOfDay = 'weekday';
     }
+    // views/list.ejs and pass it a variable 'kindOfDay' and pass it day
+    res.render(`list`, {
+        tDay: currentDay, 
+        tKind: kindOfDay
+    });
 })
 
 

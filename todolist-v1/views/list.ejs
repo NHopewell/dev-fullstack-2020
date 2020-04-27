@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+
+    <% if (tKind === 'weekend') { %>
+        <h1 style="color:darkslateblue">Its <%= tDay %>! Which means its the <%= tKind %></h1>
+    <% } else { %>
+        <h1 style="color:darkslategray">Its <%= tDay %>! Which means its a <%= tKind %></h1>
+    <% } %>
+    <h2>Time to make your to do list</h2>
+
+    <form class="" action="/" method="post">
+        <input type="text" name="addTodo" placeholder="Add task to todolist">
+    </form>
+    <ul>
+        <li>Buy food.</li>
+        <li>Cook food.</li>
+        <li>Eat food.</li>
+    </ul>
+
+    
+    
+</body>
+</html>
