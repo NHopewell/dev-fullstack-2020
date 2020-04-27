@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
         month: "long"
     }
     let currentDay = today.toLocaleDateString("en-us", options) // pass in options here
+    
     let kindOfDay;
     
     if ([6, 7].includes(today)) {
@@ -30,20 +31,19 @@ app.get("/", (req, res) => {
     } else {
         kindOfDay = 'weekday';
     }
-    // views/list.ejs and pass it a variable 'kindOfDay' and pass it day
+    // views/list.ejs and pass it all the variables we want to render
     res.render('list', {
         tDay: currentDay, 
         tKind: kindOfDay,
-        listItems: todoItems
+        listItems: todoItems // global empty array user will add to
     });
 })
 
 app.post("/", (req, res) => {
-
-    // update todo item
+    // update todo items array
     let newItem = req.body.newItem;
     todoItems.push(newItem);
-    // triggers app.get again once user posts, now this time with a new item to add
+    // triggers app.get again once user posts, now this time with a new item added to todo array
     res.redirect('/');
 })
 
