@@ -9,18 +9,8 @@
 </head>
 <body>
     <div class='box' id='heading'>
-        <h1><%= tDay %></h1>
+        <h1><%= listTitle %></h1>
     </div>
-
-    <div class="box" id='heading-3'>
-        <% if (tKind === 'weekend') { %>
-            <h2>my weekend todo list:</h2>
-        <% } else { %>
-            <h2>my weeekday todo list:</h2>
-        <% } %>
-    </div>
-
-
 
     <div class="box" id="todo">
 
@@ -33,7 +23,7 @@
 
         <form class="item" action="/" method="post">
             <input type="text" name="newItem" placeholder="new item" autocomplete="off">
-            <button type="submit">+</button>
+            <button type="submit" name="list" value= <%= listTitle %>>+</button>
         </form>
         
     </div>

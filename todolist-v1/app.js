@@ -14,6 +14,7 @@ const port = 3000;
 
 // will be updated when user posts to "/"
 let todoItems = [];
+let workItems = [];
 
 app.get("/", (req, res) => {
     
@@ -26,27 +27,42 @@ app.get("/", (req, res) => {
     }
     let currentDay = today.toLocaleDateString("en-us", options) // pass in options here
     
-    let kindOfDay;
-    
-    if ([6, 7].includes(today)) {
-        kindOfDay = 'weekend';
-    } else {
-        kindOfDay = 'weekday';
-    }
     // views/list.ejs and pass it all the variables we want to render
     res.render('list', {
-        tDay: currentDay, 
-        tKind: kindOfDay,
+        listTitle: currentDay,
         listItems: todoItems // global empty array user will add to
     });
-})
+});
 
 app.post("/", (req, res) => {
-    // update todo items array
+
     let newItem = req.body.newItem;
-    todoItems.push(newItem);
+    // post button name for forum was given "list"
+    if (req.body.list === "Work List") {
+        workItems.push(newItem);
+        // triggers app.get again once user posts, now this time with a new item added to todo array
+        res.redirect("/work")
+    } else {
+        todoItems.push(newItem);
+        res.redirect("/");
+
+    }
+})
+
+app.get("/work", (req, res) => {
+    // simply change title to string
+    res.render("list", {
+        listTitle: "Work List",
+        listItems: workItems
+    });
+});
+
+app.post("/work", (req, res) => {
+    let newItem = req.body.newItem;
+    workItems.push(newItem);   
     // triggers app.get again once user posts, now this time with a new item added to todo array
     res.redirect('/');
 })
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
