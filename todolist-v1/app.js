@@ -5,7 +5,9 @@ const app = express();
 app.set('view engine', 'ejs');
 
 const bodyParser = require("body-parser");
+
 app.use(bodyParser.urlencoded( {extended: true} ));
+app.use(express.static("public")); // public files to use
 
 const cwd = __dirname;
 const port = 3000;
