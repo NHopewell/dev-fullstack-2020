@@ -1,4 +1,4 @@
-
+const day = require(`${__dirname}/date.js`)
 const express = require("express");
 const app = express();
 // set apps view enjine to ejs
@@ -18,14 +18,8 @@ let workItems = [];
 
 app.get("/", (req, res) => {
     
-    let today = new Date();
-    // set options for toLocalDateString
-    const options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    }
-    let currentDay = today.toLocaleDateString("en-us", options) // pass in options here
+    // the module we required with the date function
+    let currentDay = day()   
     
     // views/list.ejs and pass it all the variables we want to render
     res.render('list', {
