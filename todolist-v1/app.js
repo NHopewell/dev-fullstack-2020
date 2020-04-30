@@ -1,16 +1,17 @@
 const date = require(`${__dirname}/date.js`)
 const express = require("express");
-const app = express();
-// set apps view enjine to ejs
-app.set('view engine', 'ejs');
-
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded( {extended: true} ));
-app.use(express.static("public")); // public files to use
-
+const app = express();
 const cwd = __dirname;
 const port = 3000;
+
+// set apps view enjine to ejs
+app.set('view engine', 'ejs');
+// use bodyparser
+app.use(bodyParser.urlencoded( {extended: true} ));
+// public files server will use
+app.use(express.static("public")); 
 
 // will be updated when user posts to "/"
 const todoItems = [];
@@ -32,7 +33,7 @@ app.post("/", (req, res) => {
 
     const newItem = req.body.newItem;
     // post button name for forum was given "list"
-    if (req.body.list === "Work List") {
+    if (req.body.list === "Work") {
         workItems.push(newItem);
         // triggers app.get again once user posts, now this time with a new item added to todo array
         res.redirect("/work")
@@ -55,7 +56,7 @@ app.post("/work", (req, res) => {
     const newItem = req.body.newItem;
     workItems.push(newItem);   
     // triggers app.get again once user posts, now this time with a new item added to todo array
-    res.redirect('/');
+    res.redirect('/work');
 })
 
 app.get("/about", (req, res) => {
