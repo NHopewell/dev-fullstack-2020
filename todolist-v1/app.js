@@ -64,5 +64,11 @@ app.post("/work", (req, res) => {
     res.redirect('/');
 })
 
+app.get("/about", (req, res) => {
+    // simply change title to string
+    res.render("about")
+});
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
