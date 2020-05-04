@@ -67,9 +67,21 @@ app.get("/contact", (req, res) => {
 
 // compose page
 app.get("/compose", (req, res) => {
-    res.render('compose');
+    res.render("compose");
 });
+app.post("/compose", (req, res) => {
 
+    const newPostTitle = req.body.postTitle;
+    const newPostBody = req.body.composedPost;
+    const newPost = {
+        title: newPostTitle,
+        post: newPostBody
+    };
+
+    posts.push(newPost);
+    res.redirect("/");
+
+})
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
