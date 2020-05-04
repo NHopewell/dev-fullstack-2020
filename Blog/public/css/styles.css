@@ -1,0 +1,21 @@
+#title .navbar {
+    background-color: #e4f9f5;
+    padding: 2% 10% 3% 10%;
+}
+
+.main {
+    min-height: calc(100vh - 134.19px - 77.66px);
+}
+
+.main-box {
+    padding: 0% 10%;
+    margin: 2% 0%;
+}
+
+
+#footer .container-fluid{
+    padding: 1% 0 1% 0;
+    background-color: #40514e;
+    color: #fff;
+}
+
