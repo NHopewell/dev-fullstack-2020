@@ -282,6 +282,10 @@ p{
     margin-right:30px;
 }
 
+.navbar-nav  li a:hover {
+    color: black !important;
+}
+
 @media(max-width: 536px) {
     .nav > li{
         margin-left:15px;
