@@ -79,4 +79,17 @@ app.post("/compose", (req, res) => {
 })
 
 
+// posts pages with Express routing
+app.get('/post/:postName', (req, res) => {
+    
+    const requested = req.params.postName;
+
+    posts.forEach( (post) => {
+        if ( requested === post.title ) {
+            console.log("found");
+        }
+    });
+  });
+
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
