@@ -70,6 +70,7 @@ app.post("/compose", (req, res) => {
 
     const newPostTitle = req.body.postTitle;
     const newPostBody = req.body.composedPost;
+
     const newPost = {
         title: newPostTitle,
         post: newPostBody
@@ -84,7 +85,7 @@ app.post("/compose", (req, res) => {
 // posts pages with Express routing
 app.get('/posts/:postName', (req, res) => {
 
-    const requested = _.lowerCase(req.params.postName);
+    let requested = _.lowerCase(req.params.postName);
 
     posts.forEach( (post) => {
         if ( requested === _.lowerCase(post.title) ) {
@@ -93,8 +94,6 @@ app.get('/posts/:postName', (req, res) => {
                 title: post.title,
                 post: post.post
             });
-        } else {
-            res.redirect("/");
         }
     });
   });
