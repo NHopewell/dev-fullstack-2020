@@ -89,15 +89,12 @@ app.get('/posts/:postName', (req, res) => {
     posts.forEach( (post) => {
         if ( requested === _.lowerCase(post.title) ) {
 
-            const newPostTitle = post.title;
-            const newPostBody = post.post;
-
             res.render('posts', {
-                title: newPostTitle,
-                post: newPostBody
+                title: post.title,
+                post: post.post
             });
         } else {
-            res
+            res.redirect("/");
         }
     });
   });
