@@ -94,7 +94,7 @@ app.get('/posts/:postName', (req, res) => {
                 title: post.title,
                 post: post.post
             });
-        }
+        };
     });
   });
 
