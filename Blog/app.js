@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const _ = require('lodash');
 
 const app = express();
 const cwd = __dirname;
@@ -64,6 +65,7 @@ app.get("/contact", (req, res) => {
 app.get("/compose", (req, res) => {
     res.render("compose");
 });
+
 app.post("/compose", (req, res) => {
 
     const newPostTitle = req.body.postTitle;
@@ -80,16 +82,27 @@ app.post("/compose", (req, res) => {
 
 
 // posts pages with Express routing
-app.get('/post/:postName', (req, res) => {
-    
-    const requested = req.params.postName;
+app.get('/posts/:postName', (req, res) => {
+
+    const requested = _.lowerCase(req.params.postName);
 
     posts.forEach( (post) => {
-        if ( requested === post.title ) {
-            console.log("found");
+        if ( requested === _.lowerCase(post.title) ) {
+
+            const newPostTitle = post.title;
+            const newPostBody = post.post;
+
+            res.render('posts', {
+                title: newPostTitle,
+                post: newPostBody
+            });
+        } else {
+            res
         }
     });
   });
+
+app.o
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
