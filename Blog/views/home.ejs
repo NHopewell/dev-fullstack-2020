@@ -1,19 +1,19 @@
 <%- include("partials/header") -%>
 
-<section id="home-body" class="main">
+    <section id="home-body" class="main">
 
-    <div class="container-fluid main-box">
-        <h1>Home</h1>
-        <p><%= homeContent %></p>
-    </div>
+        <div class="container-fluid main-box">
+            <h1>Home</h1>
+            <p><%= homeContent %></p>
+        </div>
 
-    <% allPosts.forEach( (post) => { %>
-    <div class="container-fluid main-box">
-        <h2><%= post.title%></h2>
-        <p> <%= post.post%></p>
-    </div>
+        <% allPosts.forEach( (post) => { %>
+        <div class="container-fluid main-box">
+            <h2><%= post.title%></h2>
+            <p> <%= post.post%></p>
+        </div>
 
-    <% }); %>
+        <% }); %>
 
 </section>
 
