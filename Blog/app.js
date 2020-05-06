@@ -68,6 +68,7 @@ app.get("/compose", (req, res) => {
 
 app.post("/compose", (req, res) => {
 
+    // get title and body of post using their html names
     const newPostTitle = req.body.postTitle;
     const newPostBody = req.body.composedPost;
 
@@ -76,6 +77,7 @@ app.post("/compose", (req, res) => {
         post: newPostBody
     };
 
+    // add new post to post array and redirect to "/"
     posts.push(newPost);
     res.redirect("/");
 
@@ -85,11 +87,12 @@ app.post("/compose", (req, res) => {
 // posts pages with Express routing
 app.get('/posts/:postName', (req, res) => {
 
+    // utilize lodash to make routing to pages more robust
     let requested = _.lowerCase(req.params.postName);
-
+    // if requested url is in posts.title
     posts.forEach( (post) => {
         if ( requested === _.lowerCase(post.title) ) {
-
+            // render posts page with post infor only, along with header and footer 
             res.render('posts', {
                 title: post.title,
                 post: post.post
@@ -98,7 +101,6 @@ app.get('/posts/:postName', (req, res) => {
     });
   });
 
-app.o
 
-
+// listen on port
 app.listen(port, () => console.log(`Listening on port ${port}`));
