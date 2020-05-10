@@ -3,10 +3,21 @@ const mongoose = require("mongoose");
 //connect (but name of db you want to connnect to OR create if  doesnt exist at end of string)
 mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true} );
 
+
+// ----------------- INSERT INTO DB -------------------- //
+
+
 //create new schema of how data in a particular collection of documents will be structured
 const fruitsSchema = new mongoose.Schema( {
-    name: String, 
-    rating: Number,
+    name: {
+        type: String, 
+        required: [true, "Must add a name for each fruit"]
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 
@@ -45,15 +56,14 @@ const Banana = new Fruit({
     review: "Pretty good"
 });
 
-Fruit.insertMany([Orange, Pear, Banana], (err) => {
-    if ( err ) {
-        console.log(err);
-    } else {
-        console.log("Saves fruits to db.")
-    }
-})
+// Fruit.insertMany([Orange, Pear, Banana], (err) => {
+//     if ( err ) {
+//         console.log(err);
+//     } else {
+//         console.log("Saves fruits to db.")
+//     }
+// })
 
-// ---------------------------------------------------------------------------------------//
 
 // people collection
 const peopleSchema = new mongoose.Schema({
@@ -69,3 +79,24 @@ const person = new People({
 })
 
 // person.save()
+
+
+
+// ----------------- READ FROM DB -------------------- //
+
+// find documents in fruits collection -> returns array of objects
+Fruit.find( (err, fruits) => {
+    if (err) {
+        console.log(err);
+    } else {
+
+        mongoose.connection.close(); // close connection
+
+        // log name of each fruit obj
+        fruits.forEach( (fruit) => {
+            console.log(fruit.name); 
+        });
+    }
+});
+
+
