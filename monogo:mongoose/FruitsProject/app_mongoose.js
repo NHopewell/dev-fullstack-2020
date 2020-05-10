@@ -65,17 +65,26 @@ const Banana = new Fruit({
 // })
 
 
-// people collection
+//>>>> people collection <<<<
 const peopleSchema = new mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favoriteFruit: fruitsSchema //   <<<<<<<<< -------- establishing relationship with embedded document
 });
+
+// make a new fruit
+const watermelon = new Fruit({
+    name: "Watermelon",
+    rating: 9,
+    review: "My personal fav!"
+})
 
 const People = mongoose.model("People", peopleSchema);
 
 const person = new People({
-    name: "Nick",
-    age: 26
+    name: "Mike",
+    age: 26,
+    favoriteFruit: watermelon
 })
 
 // person.save()
@@ -83,6 +92,8 @@ const person = new People({
 
 
 // ----------------- READ FROM DB -------------------- //
+
+
 
 // find documents in fruits collection -> returns array of objects
 Fruit.find( (err, fruits) => {
@@ -99,4 +110,43 @@ Fruit.find( (err, fruits) => {
     }
 });
 
+
+
+// ----------------- UPDATING AND DELETING -------------------- //
+
+
+// which doc you want to update, what you want to change
+Fruit.updateOne( {_id: "5eb81d5458b31af66b9199f8"}, {name: "Pineapple"}, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Succefully updated record");
+    }
+});
+
+
+Fruit.deleteOne( {_id: "5eb81d5458b31af66b9199f8"}, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Succefully deleted record");
+    }
+});
+
+
+// update record to give a favorite fruit:
+const melon = new Fruit ({
+    name: "Melon",
+    rating: 8,
+    review: "Fav"
+});
+
+People.update( {_id: "5eb81eeec996cff692666c5f"}, 
+               {favoriteFruit: melon}, (err) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Succefully updated record");
+                    }
+               })
 
