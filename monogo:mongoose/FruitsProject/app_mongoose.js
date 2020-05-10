@@ -56,13 +56,13 @@ const Banana = new Fruit({
     review: "Pretty good"
 });
 
-// Fruit.insertMany([Orange, Pear, Banana], (err) => {
-//     if ( err ) {
-//         console.log(err);
-//     } else {
-//         console.log("Saves fruits to db.")
-//     }
-// })
+Fruit.insertMany([Orange, Pear, Banana], (err) => {
+    if ( err ) {
+        console.log(err);
+    } else {
+        console.log("Saves fruits to db.")
+    }
+})
 
 
 //>>>> people collection <<<<
@@ -141,12 +141,13 @@ const melon = new Fruit ({
     review: "Fav"
 });
 
-People.update( {_id: "5eb81eeec996cff692666c5f"}, 
-               {favoriteFruit: melon}, (err) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log("Succefully updated record");
-                    }
-               })
+People.update( 
+    {_id: "5eb81eeec996cff692666c5f"}, 
+    {favoriteFruit: melon}, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Succefully updated record");
+        }
+});
 
