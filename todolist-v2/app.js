@@ -41,21 +41,25 @@ const item3 = new Item ({
 
 const defaultItems = [item1, item2, item3];
 
-//insert documents into db collection
-Item.insertMany(defaultItems, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Successfully inserted items");
-  }
-});
-
-
 // get and post routes
 app.get("/", function(req, res) {
 
-  res.render("list", {listTitle: "Today", newListItems: items});
-
+  // check if items collection in mongo is empty, if so populate once
+  Item.find({}, (err, foundItems) => {
+    if (foundItems.length === 0) {
+      //insert documents into db collection
+      Item.insertMany(defaultItems, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Successfully inserted items");
+        }
+      });
+      res.redirect("/");
+    } else {
+      res.render("list", {listTitle: "Today", newListItems: foundItems});
+    }
+  });
 });
 
 app.post("/", function(req, res){
