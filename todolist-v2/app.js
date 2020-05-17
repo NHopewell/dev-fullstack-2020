@@ -78,6 +78,20 @@ app.post("/", function(req, res){
 
 });
 
+app.post("/delete", (req, res) => {
+  // id of item (document) checked off todo list
+  const checkedItemId = req.body.checkbox;
+  // delete document from collection
+  Item.findByIdAndDelete(checkedItemId, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // redirect back home with item deleted
+      res.redirect("/");
+    }
+  });
+});
+
 app.get("/work", function(req,res){
   res.render("list", {listTitle: "Work List", newListItems: workItems});
 });
