@@ -80,16 +80,30 @@ app.post("/", function(req, res){
 
   // save posted text
   const itemName = req.body.newItem;
+  const listName = req.body.list;
   // create new mongo document
   const item = new Item ({
     name: itemName
   });
-  // save document into collection of documents
-  item.save()
 
-  // redirect back to home
-  res.redirect("/");
-
+  // check if list is the defaul route list Today or custom list
+  if (listName === 'Today') {
+    // save document into collection of documents
+    item.save()
+    // redirect back to home
+    res.redirect("/");
+  } else {
+    // search for list doc in list collection and add to existing array of items
+    List.findOne({name: listName}, (err, foundList) => {
+      if (!err) {
+        // push into .items property (array of items)
+        foundList.items.push(item);
+        foundList.save();
+        // redirect to proper custom route
+        res.redirect(`/${listName}`);
+      }
+    });
+  }
 });
 
 app.post("/delete", (req, res) => {
