@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const _ = require("lodash");
 const date = require(__dirname + "/date.js");
 
 const app = express();
@@ -41,24 +42,37 @@ const item3 = new Item ({
 
 const defaultItems = [item1, item2, item3];
 
+// list of items
+const listSchema = {
+  name: String, 
+  items: [itemSchema] // array of itemSchema documents
+}
+
+const List = mongoose.model("List", listSchema);
+
 // get and post routes
 app.get("/", function(req, res) {
 
   // check if items collection in mongo is empty, if so populate once
   Item.find({}, (err, foundItems) => {
-    if (foundItems.length === 0) {
-      //insert documents into db collection
-      Item.insertMany(defaultItems, (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Successfully inserted items");
-        }
-      });
-      res.redirect("/");
+    if (!err) {
+      if (foundItems.length === 0) {
+        //insert documents into db collection
+        Item.insertMany(defaultItems, (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Successfully inserted items");
+          }
+        });
+        res.redirect("/");
+      } else {
+        res.render("list", {listTitle: "Today", newListItems: foundItems});
+      }
     } else {
-      res.render("list", {listTitle: "Today", newListItems: foundItems});
+      console.log(err);
     }
+
   });
 });
 
@@ -92,9 +106,37 @@ app.post("/delete", (req, res) => {
   });
 });
 
-app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
+// posts pages with Express routing
+app.get('/:listName', (req, res) => {
+
+  // utilize lodash to make routing to pages more robust
+  const customList = _.lowerCase(req.params.listName);
+
+  List.findOne({name: customList}, (err, foundList) => {
+    if (!err){
+      if (!foundList) {
+        // create new list 
+        const list = new List({
+          name: customList,
+          items: defaultItems
+        });
+        // save into lists collection
+        list.save();
+        // show newly created and saved list
+        res.redirect(`/${customList}`);
+      } else {
+        // show existing list
+        res.render("list", {
+          listTitle: foundList.name, 
+          newListItems: foundList.items
+        });
+      }
+    } else {
+      console.log(err);
+    }
+  });
 });
+
 
 app.get("/about", function(req, res){
   res.render("about");
