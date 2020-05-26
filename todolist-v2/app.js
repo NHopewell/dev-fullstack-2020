@@ -67,12 +67,14 @@ app.get("/", function(req, res) {
         });
         res.redirect("/");
       } else {
-        res.render("list", {listTitle: "Today", newListItems: foundItems});
+        res.render("list", {
+          listTitle: "Today", 
+          newListItems: foundItems
+        });
       }
     } else {
       console.log(err);
     }
-
   });
 });
 
@@ -99,32 +101,52 @@ app.post("/", function(req, res){
         // push into .items property (array of items)
         foundList.items.push(item);
         foundList.save();
-        // redirect to proper custom route
+        // redirect to proper custom route - caught by /:listName get
         res.redirect(`/${listName}`);
+      } else {
+        console.log(err);
       }
     });
   }
 });
 
 app.post("/delete", (req, res) => {
+  
   // id of item (document) checked off todo list
   const checkedItemId = req.body.checkbox;
-  // delete document from collection
-  Item.findByIdAndDelete(checkedItemId, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // redirect back home with item deleted
-      res.redirect("/");
-    }
-  });
+  const listName = req.body.listName;
+
+  // if on default list
+  if (listName === "Today") {
+    // delete document from collection
+    Item.findByIdAndDelete(checkedItemId, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // redirect back home with item deleted
+        res.redirect("/");
+      }
+    });
+  } else {
+    // not default list, pull item from array property of document
+    List.findOneAndUpdate(
+      {name: listName}, 
+      {$pull: {items: {_id: checkedItemId}}}, 
+      (err, foundList) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect(`/${listName}`);
+        }
+    });
+  }
 });
 
 // posts pages with Express routing
 app.get('/:listName', (req, res) => {
 
   // utilize lodash to make routing to pages more robust
-  const customList = _.lowerCase(req.params.listName);
+  const customList = _.capitalize(req.params.listName);
 
   List.findOne({name: customList}, (err, foundList) => {
     if (!err){
