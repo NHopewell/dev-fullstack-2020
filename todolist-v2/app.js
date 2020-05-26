@@ -1,5 +1,3 @@
-//jshint esversion:6
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -111,7 +109,7 @@ app.post("/", function(req, res){
 });
 
 app.post("/delete", (req, res) => {
-  
+
   // id of item (document) checked off todo list
   const checkedItemId = req.body.checkbox;
   const listName = req.body.listName;
@@ -130,9 +128,7 @@ app.post("/delete", (req, res) => {
   } else {
     // not default list, pull item from array property of document
     List.findOneAndUpdate(
-      {name: listName}, 
-      {$pull: {items: {_id: checkedItemId}}}, 
-      (err, foundList) => {
+      {name: listName}, {$pull: {items: {_id: checkedItemId}}}, (err, foundList) => {
         if (err) {
           console.log(err);
         } else {
@@ -172,7 +168,6 @@ app.get('/:listName', (req, res) => {
     }
   });
 });
-
 
 app.get("/about", function(req, res){
   res.render("about");
