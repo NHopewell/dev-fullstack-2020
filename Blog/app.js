@@ -9,6 +9,7 @@ const port = 3000;
 
 // set apps view enjine to ejs
 app.set('view engine', 'ejs');
+
 // use bodyparser
 app.use(bodyParser.urlencoded( {extended: true} ));
 // public files server will use
@@ -70,7 +71,6 @@ app.get("/", (req, res) => {
     });
 });
 
-
 // Aboute page
 app.get("/about", (req, res) => {
     res.render('about', {
@@ -78,14 +78,12 @@ app.get("/about", (req, res) => {
     });
 });
 
-
 // contact page
 app.get("/contact", (req, res) => {
     res.render('contact', {
         contactContent: contactContent
     });
 });
-
 
 // compose page
 app.get("/compose", (req, res) => {
@@ -104,8 +102,11 @@ app.post("/compose", (req, res) => {
     });
 
     // add new post to posts collection and redirect to "/"
-    post.save()
-    res.redirect("/");
+    post.save( (err) => {
+        if(!err) {
+            res.redirect("/");
+        }
+    });
 });
 
 // posts pages with Express routing
