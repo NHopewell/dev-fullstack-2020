@@ -59,6 +59,7 @@ app.get("/", (req, res) => {
 
     Post.find({}, (err, foundPosts) => {
         if(!err) {
+
             res.render('home', {
                 homeContent: homeContent,
                 allPosts: foundPosts
@@ -113,7 +114,7 @@ app.get('/posts/:postName', (req, res) => {
     // utilize lodash to make routing to pages more robust
     let requestedPostTitle = _.lowerCase(req.params.postName);
 
-    List.findOne({title: requestedPostTitle}, (err, foundPost) => {
+    Post.findOne({title: requestedPostTitle}, (err, foundPost) => {
         if (!err){
             // show existing list
             res.render("posts", {
