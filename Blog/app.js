@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const _ = require('lodash');
 
 const app = express();
@@ -12,6 +13,25 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded( {extended: true} ));
 // public files server will use
 app.use(express.static("public")); 
+
+//connect (but name of db you want to connnect to OR create if  doesnt exist at end of string)
+mongoose.connect("mongodb://localhost:27017/blogDB", { 
+    useNewUrlParser: true, useUnifiedTopology: true 
+} );
+
+//create new schema of how data in a particular collection of documents will be structured
+const postSchema = new mongoose.Schema( {
+    title: {
+        type: String, 
+        required: [true, "Must add a title for each post."]
+        },
+    post: {
+        type: String
+        }
+});
+
+//make new mongo collection
+const Post = mongoose.model("Post", postSchema);
 
 // page content
 const homeContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
@@ -32,15 +52,20 @@ const contactContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
                     in culpa qui officia deserunt mollit anim id est laborum.`
 
-// contains blog posts to render
-const posts = [];
+
 
 // Home page
 app.get("/", (req, res) => {
 
-    res.render('home', {
-        homeContent: homeContent,
-        allPosts: posts
+    Post.find({}, (err, foundPosts) => {
+        if(!err) {
+            res.render('home', {
+                homeContent: homeContent,
+                allPosts: foundPosts
+            });
+        } else {
+            console.log(err);
+        }
     });
 });
 
@@ -72,15 +97,14 @@ app.post("/compose", (req, res) => {
     const newPostTitle = req.body.postTitle;
     const newPostBody = req.body.composedPost;
 
-    const newPost = {
+    const post = new Post({
         title: newPostTitle,
         post: newPostBody
-    };
+    });
 
-    // add new post to post array and redirect to "/"
-    posts.push(newPost);
+    // add new post to posts collection and redirect to "/"
+    post.save()
     res.redirect("/");
-
 })
 
 
