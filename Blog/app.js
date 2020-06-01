@@ -53,8 +53,6 @@ const contactContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
                     in culpa qui officia deserunt mollit anim id est laborum.`
 
-
-
 // Home page
 app.get("/", (req, res) => {
 
@@ -96,6 +94,7 @@ app.post("/compose", (req, res) => {
     const newPostTitle = req.body.postTitle;
     const newPostBody = req.body.composedPost;
 
+    // gets an id by default
     const post = new Post({
         title: newPostTitle,
         post: newPostBody
