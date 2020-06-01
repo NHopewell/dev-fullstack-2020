@@ -93,7 +93,7 @@ app.get("/compose", (req, res) => {
 app.post("/compose", (req, res) => {
 
     // get title and body of post using their html names
-    const newPostTitle = _.lowerCase(req.body.postTitle);
+    const newPostTitle = req.body.postTitle;
     const newPostBody = req.body.composedPost;
 
     const post = new Post({
@@ -110,12 +110,12 @@ app.post("/compose", (req, res) => {
 });
 
 // posts pages with Express routing
-app.get('/posts/:postName', (req, res) => {
+app.get('/posts/:postId', (req, res) => {
 
     // utilize lodash to make routing to pages more robust
-    let requestedPostTitle = _.lowerCase(req.params.postName);
+    let requestedPostId = req.params.postId;
 
-    Post.findOne({title: requestedPostTitle}, (err, foundPost) => {
+    Post.findOne({_id: requestedPostId}, (err, foundPost) => {
         if (!err){
             // show existing list
             res.render("posts", {
